@@ -6,7 +6,19 @@ Vue.component('price', {
     //         precision: 2
     //     }
     // },
-    props : ['value', 'prefix', 'precision'],
+    props: {
+        prefix: {
+            type: String,
+            default: 'Rp'
+        },
+        value: {
+            type: Number
+        },
+        precision: {
+            type: String,
+            default: 2
+        }
+    },
     template: '<span> {{this.prefix + Number.parseFloat(this.value).toFixed(this.precision)}} </span>'
 })
 
