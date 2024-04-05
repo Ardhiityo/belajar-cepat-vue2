@@ -45,7 +45,7 @@ Vue.component('product-list', {
     <div v-for="(items, index) in products" :data-index="index" :key="items.id"
         v-if="items.price < Number(maximum)" class="row d-none align-items-center justify-content-center">
         <div class="col-1 d-flex justify-content-end">
-            <button class="btn rounded-1 btn-primary" v-on:click="addItem(items)">+</button>
+            <button class="btn rounded-1 btn-primary" @click="$emit('add', items)">+</button>
         </div>
         <div class="col-5 d-flex justify-content-center">
             <img :src="items.image" alt="items.name" class="w-75">
