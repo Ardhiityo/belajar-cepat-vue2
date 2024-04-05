@@ -88,7 +88,7 @@
                         <h2>{{items.name}}</h2>
                         <p>{{items.description}}</p>
                         <!-- <h3>{{items.price | currencyFormat}}</h3> -->
-                        <price></price>
+                        <price :value="items.price" :prefix="'Rp'" :precision="2"></price>
                     </div>
                 </div>
             </transition-group>
