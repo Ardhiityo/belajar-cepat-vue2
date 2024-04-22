@@ -30,7 +30,7 @@ export default {
     computed: {
         showItem: function () {
             let max = this.maximum;
-            return this.products.filter(items => items.price <= max);
+            return this.products.filter(items => Math.trunc(items.price) <= max);
         }
     },
     methods: {
