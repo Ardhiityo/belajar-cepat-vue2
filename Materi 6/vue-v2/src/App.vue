@@ -1,21 +1,13 @@
 <template>
   <div id="app">
-    <div class="container mt-5">
-      <navbar @toggle="slider" :cart="cart" :totalQty="totalQty" :totalPrice="totalPrice" @deleteItem="del"></navbar>
-      <h1>IDShop</h1>
-      <div class="container" :style="{ 'margin-top': '70px' }">
-        <price-slider :slider="sliderStatus" :maximum.sync="maximum"></price-slider>
-        <product-list :products="products" :maximum="maximum" @add="addItem"></product-list>
-      </div>
-    </div>
+    <products :cart="cart" :totalQty="totalQty" :totalPrice="totalPrice" :sliderStatus="sliderStatus" :maximum.sync="maximum"
+      :products="products" @toggle="slider" @deleteItem="del" @addItem="add"></products>
   </div>
 </template>
 
 <script>
 
-import Navbar from './components/Navbar.vue';
-import PriceSlider from './components/PriceSlider.vue';
-import ProductList from './components/ProductList.vue';
+import Products from './components/Products.vue';
 
 export default {
   name: 'App',
@@ -35,14 +27,9 @@ export default {
       })
   },
   components: {
-    ProductList,
-    PriceSlider,
-    Navbar
+    Products
   },
   computed: {
-    slide: function () {
-      this.sliderStatus = !this.sliderStatus;
-    },
     totalQty: function () {
       let properties = 0;
       for (const key in this.cart) {
@@ -59,7 +46,10 @@ export default {
     }
   },
   methods: {
-    addItem: function (item) {
+    slider: function () {
+      this.sliderStatus = !this.sliderStatus;
+    },
+    add: function (item) {
       let indexItem;
       let indicator = this.cart.filter(function (items, index) {
         if (items.product.id === item.id) {
@@ -77,9 +67,6 @@ export default {
           qty: 1
         });
       }
-    },
-    slider: function () {
-      return this.sliderStatus = !this.sliderStatus;
     },
     del: function (index) {
       if (this.cart[index].qty > 1) {

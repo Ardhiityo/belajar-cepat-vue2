@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-2 mt-2">
+    <div class="mb-2" style="margin-top: 70px;">
         <transition name="fade">
             <div v-if="slider">
                 <form class="flex-column justify-content-center align-items-center" :class=sliderState>
