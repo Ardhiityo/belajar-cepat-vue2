@@ -5,11 +5,11 @@
                 <form class="flex-column justify-content-center align-items-center" :class=sliderState>
                     <div class="d-flex mb-3 align-items-center justify-content-center">
                         <label for="max" class="form-label" :style="{ 'font-weight': 'bold' }">Max</label>
-                        <input type="number" id="max" v-model="maxAmount" @change="$emit('update:maximum', maxAmount)"
-                            class="form-control d-inline-block mx-2 w-25">
-                            <input type="range" minlength="5" maxlength="200" v-model="maxAmount" class="w-100"
-                            @input="$emit('update:maximum', maxAmount)">
-                        </div>
+                        <input type="number" id="max" class="form-control d-inline-block mx-2 w-25" v-model="maxAmount"
+                            @change="$parent.$emit('update:maximum',maxAmount)">
+                        <input type="range" minlength="5" maxlength="200" class="w-100" v-model="maxAmount"
+                            @input="$parent.$emit('update:maximum',maxAmount)">
+                    </div>
                 </form>
             </div>
         </transition>

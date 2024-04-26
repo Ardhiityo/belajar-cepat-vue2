@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar fixed-top">
         <div class="container d-flex justify-content-end">
-            <button class="btn btn-sm btn-primary rounded-1" @click="$emit('toggle-slide')">
+            <button class="btn btn-sm btn-primary rounded-1" @click="$parent.$emit('toggle-slide')">
                 <i class="fa-solid fa-dollar-sign"></i>
             </button>
             <div v-if="cart.length > 0" class="d-flex">
@@ -24,9 +24,10 @@
                                     </span>
                                     <span class="mx-1">{{ item.product.name }}</span>
                                 </h6>
-                                <button class="badge text-bg-danger border-0" @click.stop="$emit('delete', index)">-</button>
+                                <button class="badge text-bg-danger border-0" @click.stop="$parent.$emit('delete', index)">-</button>
                                 {{ item.qty * item.product.price | currencyFormat }}
                             </div>
+                            <router-link to="/checkout" class="btn btn-sm btn-outline-primary rounded-1">Checkout</router-link>
                         </div>
                     </div>
                 </div>

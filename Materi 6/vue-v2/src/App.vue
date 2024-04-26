@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <products :cart="cart" :totalQty="totalQty" :totalPrice="totalPrice" :sliderStatus="sliderStatus" :maximum.sync="maximum"
-      :products="products" @toggle="slider" @deleteItem="del" @addItem="add"></products>
+    <div class="container mt-5">
+    <router-view
+    :cart="cart" 
+    :totalQty="totalQty" 
+    :totalPrice="totalPrice" 
+    :sliderStatus="sliderStatus" 
+    :maximum.sync="maximum"
+    :products="products" 
+    @toggle-slide="slider" 
+    @delete="del"
+    @add-items="add"></router-view>
+  </div>
   </div>
 </template>
 
 <script>
-
-import Products from './components/Products.vue';
 
 export default {
   name: 'App',
@@ -25,9 +33,6 @@ export default {
       .then(res => {
         this.products = res;
       })
-  },
-  components: {
-    Products
   },
   computed: {
     totalQty: function () {

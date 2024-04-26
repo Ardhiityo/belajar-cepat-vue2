@@ -1,9 +1,9 @@
 <template>
     <transition-group name="fade" tag="div" @beforeEnter="before" @enter="enter" @leave="leave">
         <div v-for="(items, index) in showItem" :data-index="index" :key="items.id"
-            class="row d-none align-items-center justify-content-center">
+            class="row align-items-center justify-content-center">
             <div class="col-1 d-flex justify-content-end">
-                <button class="btn rounded-1 btn-primary" @click="$emit('add', items)">+</button>
+                <button class="btn rounded-1 btn-primary" @click="$parent.$emit('add-items', items)">+</button>
             </div>
             <div class="col-5 d-flex justify-content-center">
                 <img :src="items.image" alt="items.name" class="w-75">
@@ -30,7 +30,9 @@ export default {
     computed: {
         showItem: function () {
             let max = this.maximum;
-            return this.products.filter(items => Math.trunc(items.price) <= max);
+            return this.products.filter(function(item) {
+				return Math.trunc(item.price) <= max;
+			});
         }
     },
     methods: {
